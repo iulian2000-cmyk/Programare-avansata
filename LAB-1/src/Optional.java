@@ -81,58 +81,52 @@ public class Optional {
     }
 	public static void main(String[] args) {
         // n-ul e un numar primit ca argument de la linia de comanda doar ca valoarea acestuia va fi intr-un string ci nu intr-un integer ,drept pentru care ar trebui sa folosim o conversie din string in int . 
-	    int n = Integer.parseInt(args[0]);
-        if( n%2 == 0) 
-		{ 
-			System.exit(0);
-        }
-        int [][] matriceDeAdiacenta = new int [n][n]; 
-		// Generarea matricei de adiacenta . 
-        for(int i=0;i<n;i++)
-		{
-			for(int j=0;j<n;j++)
-			{
-
+	    try
+         {
+            int n = Integer.parseInt(args[0]);
+            if( n%2 == 0) { 
+			    System.exit(0);
+            }
+            int [][] matriceDeAdiacenta = new int [n][n]; 
+		    // Generarea matricei de adiacenta . 
+            for(int i=0;i<n;i++){
+			  for(int j=0;j<n;j++){
 				if(i!=j)
 				{
 				  matriceDeAdiacenta[i][j]=(int)Math.round(Math.random());
                 }else{
 					matriceDeAdiacenta[i][j]=0;
-				}
-                
-			}
-		}
-        // Logica e foarte simpla in urmatoarele 2 for-uri , daca avem ca a[i][j]=1 asta ar presupune ca nodul i e vecin  cu nodul j si invers => a[j][i]=1 totodata
-        for(int i=0;i<n;i++)
-		{
-			for(int j=0;j<n;j++)
-			{
-                if(matriceDeAdiacenta[i][j] == 1)
-                {
+			    	}
+			  } 
+		    }
+            // Logica e foarte simpla in urmatoarele 2 for-uri , daca avem ca a[i][j]=1 asta ar presupune ca nodul i e vecin  cu nodul j si invers => a[j][i]=1 totodata
+            for(int i=0;i<n;i++){
+			   for(int j=0;j<n;j++){
+                if(matriceDeAdiacenta[i][j] == 1){
                     matriceDeAdiacenta[j][i] = 1;
-                }
-			}
-		}
-		System.out.println("\n Matrice de adiacenta \n");
-        if(n < 30000 )
-        {
-           printMatrices(matriceDeAdiacenta);
-        }
-        boolean Conex = isConnected(matriceDeAdiacenta,n);
-        if(!Conex)
-        {
-            connectedComponents(n,matriceDeAdiacenta);     
-        }else{
-            int [] vizitat = new int [n];
-            ArrayList<Integer> arbore = new ArrayList<Integer>();
-            for(int i = 0;i<n;i++)
-            {
-                vizitat[i] = 0;
+                    }
+			    }
+		    }
+		    System.out.println("\n Matrice de adiacenta \n");
+            if(n < 30000 ){
+               printMatrices(matriceDeAdiacenta);
             }
-            System.out.println("\n Arbore partial \n");
-            DFS(0,matriceDeAdiacenta,n,vizitat,arbore);
-            System.out.println(arbore);
-            System.out.println("\n");
+            boolean Conex = isConnected(matriceDeAdiacenta,n);
+            if(!Conex){
+                connectedComponents(n,matriceDeAdiacenta);     
+            }else{
+                int [] vizitat = new int [n];
+                ArrayList<Integer> arbore = new ArrayList<Integer>();
+                for(int i = 0;i<n;i++){
+                    vizitat[i] = 0;
+                }
+                System.out.println("\n Arbore partial \n");
+                DFS(0,matriceDeAdiacenta,n,vizitat,arbore);
+                System.out.println(arbore);
+                System.out.println("\n");
+            }
+        }catch (NumberFormatException x){
+                System.out.printf("Argument invalid \n");
         }
     }
-  } 
+} 
