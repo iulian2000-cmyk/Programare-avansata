@@ -83,6 +83,7 @@ public class Optional {
         // n-ul e un numar primit ca argument de la linia de comanda doar ca valoarea acestuia va fi intr-un string ci nu intr-un integer ,drept pentru care ar trebui sa folosim o conversie din string in int . 
 	    try
          {
+            long beginTime = System.nanoTime();
             int n = Integer.parseInt(args[0]);
             if( n%2 == 0) { 
 			    System.exit(0);
@@ -123,7 +124,11 @@ public class Optional {
                 System.out.println("\n Arbore partial \n");
                 DFS(0,matriceDeAdiacenta,n,vizitat,arbore);
                 System.out.println(arbore);
-                System.out.println("\n");
+                System.out.println("\n");    
+		    
+		long endTime   = System.nanoTime();
+                long totalTime = endTime - beginTime;
+                System.out.println("\n Time of execution:" + totalTime + "\n");
             }
         }catch (NumberFormatException x){
                 System.out.printf("Argument invalid \n");
