@@ -21,7 +21,11 @@ class TravelPlan {
         }
         return isKeyPresent;
     }
-
+    /**
+    *  Constructor
+    *  @param city - city of the travel plan
+    *  @param order - the order of visiting
+    */
     TravelPlan(City city, Queue<Location>order)
     {
         this.city = new City(city.getLocationList());
@@ -50,6 +54,12 @@ class TravelPlan {
             }
         }
     }
+    /**
+    *   Metoda ce determina toate drumurile cele mai scurte de la un nod dat catre celalalte noduri bazandu-ste pe algoritmul lui Dijkstra .
+    *   @param adjancencyMatrix - matricea de adiacenta
+    *   @param startVertex - index-ul locatiei de inceput 
+    *   LINK : https://discord.com/channels/@me/709104364706332782/815566895246868530
+    */
     public  void ShowAllPaths(double[][] adjacencyMatrix, int startVertex)
     {
         int nVertices = adjacencyMatrix[0].length;
