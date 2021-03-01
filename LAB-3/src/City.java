@@ -1,4 +1,3 @@
-import javax.swing.text.html.HTMLDocument;
 import java.util.*;
 import java.lang.*;
 
@@ -38,9 +37,11 @@ class City {
             }
         }
     }
+
    public void displayLocations()
    {
        System.out.print(",");
+       List<ChurchOptional> listOfChurches = new ArrayList<>();
        for(int iteratorListOfLocations=0;iteratorListOfLocations<locationList.size();iteratorListOfLocations++)
        {
          if(locationList.get(iteratorListOfLocations) instanceof ChurchOptional )

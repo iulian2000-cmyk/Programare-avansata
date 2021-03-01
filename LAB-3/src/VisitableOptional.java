@@ -3,15 +3,21 @@
  * @author  : Isac Iulian-George
  * Implementarea interfetei VisitableOptional
  */
+import com.sun.jdi.request.DuplicateRequestException;
+
 import java.time.Duration;
 import java.time.LocalTime;
 
 interface VisitableOptional {
 
-    LocalTime openingHour = LocalTime.of(9,30);
-    LocalTime closingHour =  LocalTime.of(20,0,0);
+    LocalTime openingHour=LocalTime.of(9,30);
+    LocalTime closingHour=LocalTime.of(20,0);
 
-    static Duration getDuration() {
+    /**
+     * Metoda definita static .
+     * @return Duration
+     */
+    static Duration getDuration(){
         return Duration.between(openingHour,closingHour);
     }
 
@@ -20,7 +26,7 @@ interface VisitableOptional {
      */
     default void showProgram()
     {
-        System.out.println(openingHour +"-"+closingHour);
+        System.out.println("The showProgram() was called : " + openingHour + "-" + closingHour);
     }
     /**
      * Setter pentru ora deschiderii locatiei .

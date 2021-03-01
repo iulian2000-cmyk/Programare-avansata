@@ -9,11 +9,11 @@ import java.time.*;
  * Implementarea clasei ChurchOptional
  */
 class ChurchOptional extends  Location implements VisitableOptional  {
-    LocalTime openingHour;
-    LocalTime closingHour;
+    static LocalTime openingHour;
+    static LocalTime closingHour;
 
     static Duration getDuration(){
-        return Duration.between(VisitableOptional.openingHour,VisitableOptional.closingHour);
+        return Duration.between(openingHour,closingHour);
     }
 
     public HashMap<Location,Double> getTimesBetweenLocations()
@@ -37,7 +37,7 @@ class ChurchOptional extends  Location implements VisitableOptional  {
         this.setClosingHour(closingHour);
         this.timesBetweenLocations = new HashMap<>();
         this.showProgram();
-        System.out.println(this.getDuration());
+        System.out.println("This location " + this.getName() + " is opened for " + this.getDuration());
     }
     @Override
     public void setOpeningHour(LocalTime openingHour) {

@@ -43,7 +43,7 @@ public class Optional{
         order.add(restaurant_v6);
 
         TravelPlan travelPlan = new TravelPlan(city,order);
-        System.out.println("The shortest path for all the locations to all other locations ");
+        System.out.println("\n The shortest path for all the locations to all other locations\n");
         for(int iteratorListLocations=0;iteratorListLocations<order.size();iteratorListLocations++)
         {
             travelPlan.ShowAllPaths(travelPlan.adjacencyMatrixOfLocations,iteratorListLocations);
