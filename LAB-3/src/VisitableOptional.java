@@ -40,6 +40,7 @@ interface VisitableOptional {
     void setClosingHour(LocalTime time);
 
     default void setClosingHourDefault(LocalTime time) {
+
         this.setClosingHour(time);
     }
 

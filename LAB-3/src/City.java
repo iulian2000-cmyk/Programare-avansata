@@ -1,3 +1,4 @@
+import java.awt.image.AreaAveragingScaleFilter;
 import java.util.*;
 import java.lang.*;
 
@@ -28,6 +29,7 @@ class City {
     }
     public void showCosts()
     {
+
         for(int iteratorList=0;iteratorList<locationList.size();iteratorList++)
         {
             Location temporaryLocation = locationList.get(iteratorList);
@@ -41,7 +43,7 @@ class City {
    public void displayLocations()
    {
        System.out.print(",");
-       List<ChurchOptional> listOfChurches = new ArrayList<>();
+       ArrayList<ChurchOptional> listChurches = new ArrayList<>();
        for(int iteratorListOfLocations=0;iteratorListOfLocations<locationList.size();iteratorListOfLocations++)
        {
          if(locationList.get(iteratorListOfLocations) instanceof ChurchOptional )
@@ -49,5 +51,6 @@ class City {
              System.out.print(locationList.get(iteratorListOfLocations).getName()+",");
          }
        }
+       Collections.sort(listChurches);
    }
 }

@@ -8,7 +8,7 @@ public class Optional{
         Location hotel_v1 = new Hotel("v1","Suceava","Ok",1);
         Location museum_v2 = new MuseumOptional("v2", "Iasi", "Bun", 12, LocalTime.of(8, 0), LocalTime.of(12, 0));
         Location museum_v3 = new MuseumOptional("v3","Iasi","Ok",13,LocalTime.of(12,0),LocalTime.of(18,0));
-        Location church_v4 = new ChurchOptional("v4","Iasi","Ok",LocalTime.of(8,0),LocalTime.of(12,0));
+        Location church_v4 = new ChurchOptional("v4","Iasi","Ok",LocalTime.of(10,0),LocalTime.of(12,0));
         Location church_v5 = new ChurchOptional("v5","Iasi","Ok",LocalTime.of(9,12),LocalTime.of(19,0));
         Location restaurant_v6 = new Restaurant("v6","Iasi","Foarte bun",1);
 

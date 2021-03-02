@@ -1,3 +1,4 @@
+import javax.annotation.processing.SupportedSourceVersion;
 import javax.swing.plaf.DimensionUIResource;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,7 +9,7 @@ import java.time.*;
  * @author : Isac Iulian-George
  * Implementarea clasei ChurchOptional
  */
-class ChurchOptional extends  Location implements VisitableOptional
+class ChurchOptional extends  Location implements VisitableOptional,Comparable<ChurchOptional>
 {
     private static LocalTime openingHour;
     private static LocalTime closingHour;
@@ -92,5 +93,10 @@ class ChurchOptional extends  Location implements VisitableOptional
     @Override
     double getTimeLocation(Location location) {
         return timesBetweenLocations.get(location);
+    }
+
+    @Override
+    public int compareTo(ChurchOptional churchOptional) {
+        return this.getOpeningHourDefault().compareTo(churchOptional.getOpeningHour());
     }
 }
