@@ -52,7 +52,7 @@ class ChurchOptional extends  Location implements VisitableOptional
         this.setOpeningHourDefault(openingHour);
         this.setClosingHourDefault(closingHour);
         this.timesBetweenLocations = new HashMap<>();
-
+        System.out.println("This location ," + this.getName() + "  , is opened for " + this.getDuration());
     }
     @Override
     public void setDescription(String description) {
