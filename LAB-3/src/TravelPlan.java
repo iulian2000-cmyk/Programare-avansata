@@ -4,11 +4,14 @@
  */
 import  java.util.*;
 class TravelPlan {
-    City city;
-    Queue<Location> order;
-    double [][] adjacencyMatrixOfLocations;
+    private City city;
+    private Queue<Location> order;
+    private double [][] adjacencyMatrixOfLocations;
 
-
+    public double [][] getAdjacencyMatrixOfLocations()
+    {
+        return adjacencyMatrixOfLocations;
+    }
     public boolean areClose(Location A,Location B)
     {
         Iterator<Map.Entry<Location, Double> > iterator = A.getTimesBetweenLocations().entrySet().iterator();
@@ -56,7 +59,7 @@ class TravelPlan {
     }
     /**
     *   Metoda ce determina toate drumurile cele mai scurte de la un nod dat catre celalalte noduri bazandu-ste pe algoritmul lui Dijkstra .
-    *   @param adjancencyMatrix - matricea de adiacenta
+    *   @param adjacencyMatrix - matricea de adiacenta
     *   @param startVertex - index-ul locatiei de inceput 
     *   LINK : https://www.geeksforgeeks.org/printing-paths-dijkstras-shortest-path-algorithm/
     */

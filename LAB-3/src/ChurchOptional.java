@@ -8,14 +8,30 @@ import java.time.*;
  * @author : Isac Iulian-George
  * Implementarea clasei ChurchOptional
  */
-class ChurchOptional extends  Location implements VisitableOptional  {
-    static LocalTime openingHour;
-    static LocalTime closingHour;
-
+class ChurchOptional extends  Location implements VisitableOptional
+{
+    private static LocalTime openingHour;
+    private static LocalTime closingHour;
     static Duration getDuration(){
         return Duration.between(openingHour,closingHour);
     }
+    @Override
+    public void setOpeningHour(LocalTime time) {
+         this.openingHour = time;
+    }
+    @Override
+    public void setClosingHour(LocalTime time) {
+        this.closingHour = time;
+    }
+    @Override
+    public LocalTime getOpeningHour() {
+        return openingHour;
+    }
 
+    @Override
+    public LocalTime getClosingHour() {
+        return this.closingHour;
+    }
     public HashMap<Location,Double> getTimesBetweenLocations()
     {
         return  this.timesBetweenLocations;
@@ -33,32 +49,11 @@ class ChurchOptional extends  Location implements VisitableOptional  {
         this.setName(name );
         this.setAdress(address);
         this.setDescription(description);
-        this.setOpeningHour(openingHour);
-        this.setClosingHour(closingHour);
+        this.setOpeningHourDefault(openingHour);
+        this.setClosingHourDefault(closingHour);
         this.timesBetweenLocations = new HashMap<>();
-        this.showProgram();
-        System.out.println("This location " + this.getName() + " is opened for " + this.getDuration());
-    }
-    @Override
-    public void setOpeningHour(LocalTime openingHour) {
-        this.openingHour = openingHour;
-    }
 
-    @Override
-    public void setClosingHour(LocalTime closingHour) {
-        this.closingHour = closingHour;
     }
-
-    @Override
-    public LocalTime getOpeningHour() {
-        return this.openingHour;
-    }
-
-    @Override
-    public LocalTime getClosingHour() {
-        return this.closingHour;
-    }
-
     @Override
     public void setDescription(String description) {
         this.description = description;

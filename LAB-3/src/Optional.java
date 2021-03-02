@@ -46,7 +46,7 @@ public class Optional{
         System.out.println("\n The shortest path for all the locations to all other locations\n");
         for(int iteratorListLocations=0;iteratorListLocations<order.size();iteratorListLocations++)
         {
-            travelPlan.ShowAllPaths(travelPlan.adjacencyMatrixOfLocations,iteratorListLocations);
+            travelPlan.ShowAllPaths(travelPlan.getAdjacencyMatrixOfLocations(),iteratorListLocations);
             System.out.println();
         }
         System.out.println("Locations that are visitable but not payable");

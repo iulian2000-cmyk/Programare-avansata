@@ -7,8 +7,8 @@ import java.util.Map;
  * Implementarea clasei Church
  */
 class Church extends  Location implements Visitable  {
-    String openingHour;
-    String closingHour;
+    private String openingHour;
+    private String closingHour;
     public HashMap<Location,Double> getTimesBetweenLocations()
     {
         return  this.timesBetweenLocations;

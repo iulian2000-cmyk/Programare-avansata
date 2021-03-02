@@ -7,7 +7,8 @@ import java.util.Map;
  * Implementarea clasei Restaurant
  */
 class Restaurant  extends  Location implements Classifiable {
-    int rank;
+    private int rank;
+
     public Map<Location,Double> getTimesBetweenLocations()
     {
         return  this.timesBetweenLocations;

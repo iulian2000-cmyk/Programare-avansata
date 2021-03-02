@@ -10,12 +10,12 @@ import java.time.LocalTime;
  */
 
 class MuseumOptional extends Location implements VisitableOptional,Payable{
-    double priceTicket;
-    LocalTime openingHour;
-    LocalTime closingHour;
+    private double priceTicket;
+    private static LocalTime openingHour;
+    private static LocalTime closingHour;
 
     static Duration getDuration(){
-        return Duration.between(VisitableOptional.openingHour,VisitableOptional.closingHour);
+        return Duration.between(openingHour,closingHour);
     }
     MuseumOptional(String name,String adress,String description,double price,LocalTime time1,LocalTime time2) {
 
@@ -23,9 +23,10 @@ class MuseumOptional extends Location implements VisitableOptional,Payable{
         this.setAdress(address);
         this.setDescription(description);
         this.setPriceTicket(price);
-        this.setOpeningHour(time1);
-        this.setClosingHour(time2);
+        this.setOpeningHourDefault(time1);
+        this.setClosingHourDefault(time2);
         this.timesBetweenLocations = new HashMap<>();
+        System.out.println("This location , " + this.getName() + " ,is openend for " + this.getDuration());
     }
 
     @Override
@@ -83,6 +84,7 @@ class MuseumOptional extends Location implements VisitableOptional,Payable{
         return this.priceTicket;
     }
 
+
     @Override
     public void setOpeningHour(LocalTime time) {
          this.openingHour = time;
@@ -90,12 +92,12 @@ class MuseumOptional extends Location implements VisitableOptional,Payable{
 
     @Override
     public void setClosingHour(LocalTime time) {
-         this.closingHour = time;
+        this.closingHour = time;
     }
 
     @Override
     public LocalTime getOpeningHour() {
-        return this.openingHour;
+        return openingHour;
     }
 
     @Override

@@ -8,9 +8,9 @@ import java.util.Map;
  */
 class Museum extends Location implements Payable,Visitable {
 
-    double priceTicket;
-    String openingHour;
-    String closingHour;
+    private double priceTicket;
+    private String openingHour;
+    private String closingHour;
 
     /**
      * Constructor

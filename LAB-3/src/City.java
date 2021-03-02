@@ -7,7 +7,7 @@ import java.lang.*;
  * Implementarea clasei City
  */
 class City {
-    List<Location> locationList;
+    private List<Location> locationList;
 
     /**
      * Constructor

@@ -10,45 +10,57 @@ import java.time.LocalTime;
 
 interface VisitableOptional {
 
-    LocalTime openingHour=LocalTime.of(9,30);
-    LocalTime closingHour=LocalTime.of(20,0);
+    LocalTime openingHour = LocalTime.of(9, 30);
+    LocalTime closingHour = LocalTime.of(12, 0);
 
-    /**
-     * Metoda definita static .
-     * @return Duration
-     */
-    static Duration getDuration(){
-        return Duration.between(openingHour,closingHour);
+    static Duration getDuration() {
+        return Duration.between(openingHour, closingHour);
     }
 
     /**
-     * @return void
+     * Setter pentru ora de start
+     *
+     * @param time
      */
-    default void showProgram()
-    {
-        System.out.println("The showProgram() was called : " + openingHour + "-" + closingHour);
+    void setOpeningHour(LocalTime time);
+
+    /**
+     * Metoda default folosita in cadrul constructorilor clasei "ChurchOptional" si "MuseumOptional"
+     * @param time
+     */
+    default void setOpeningHourDefault(LocalTime time) {
+        this.setOpeningHour(time);
     }
-    /**
-     * Setter pentru ora deschiderii locatiei .
-     * @param time
-     */
-    public void setOpeningHour(LocalTime time);
 
     /**
-     * Setter pentru ora inchiderii .
+     * Setter pentru ora inchiderii
+     *
      * @param time
      */
-    public void setClosingHour(LocalTime time);
+    void setClosingHour(LocalTime time);
+
+    default void setClosingHourDefault(LocalTime time) {
+        this.setClosingHour(time);
+    }
 
     /**
-     * Getter pentru ora deschiderii .
-     * @return LocalTime
+     * Getter pentru ora de start
      */
-    public LocalTime getOpeningHour();
+    LocalTime getOpeningHour();
+
+    default LocalTime getOpeningHourDefault() {
+        return this.getOpeningHour();
+    }
+
     /**
-     * Getter pentru ora inchiderii .
+     * Getter pentru ora de sfarsit
+     *
      * @return LocalTime
      */
-    public LocalTime getClosingHour();
+    LocalTime getClosingHour();
+
+    default LocalTime getClosingHourDefault() {
+        return this.getClosingHour();
+    }
 }
 
