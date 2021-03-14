@@ -10,6 +10,11 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.*;
 
+/**
+* @author Isac Iulian-George
+* Clasa Catalog 
+ */
+ 
 class Catalog {
 
     private LinkedList<Item> items;
