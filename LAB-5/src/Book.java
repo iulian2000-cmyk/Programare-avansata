@@ -1,6 +1,10 @@
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 
-
-class Book extends Item{
+class Book extends Item implements Serializable {
     private String Name;
     private int year;
     private int rating;
@@ -28,7 +32,7 @@ class Book extends Item{
 
     @Override
     public void setName(String Name) {
-         this.Name = Name;
+        this.Name = Name;
     }
 
     @Override
@@ -43,7 +47,7 @@ class Book extends Item{
 
     @Override
     public void setAuthor(String author) {
-       this.author = author;
+        this.author = author;
     }
 
     @Override
@@ -64,5 +68,25 @@ class Book extends Item{
     @Override
     public String getAuthor() {
         return this.author;
+    }
+
+    @Override
+    public void show() {
+        Desktop desk = Desktop.getDesktop();
+        File fileItem = new File(this.getPath());
+        try {
+            desk.print(fileItem);
+            TimeUnit.MINUTES.sleep(30000);
+        }catch (IOException e)
+        {
+            System.out.println("Exceptie IOException ! ");
+        }catch(InterruptedException b){
+            System.out.println("Executie intrerupta");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return this.getName() + ", " + this.getAuthor();
     }
 }

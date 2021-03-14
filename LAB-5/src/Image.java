@@ -1,6 +1,10 @@
+import java.awt.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.concurrent.TimeUnit;
 
-
-class Image extends Item {
+class Image extends Item implements Serializable {
     private String Name;
     private int year;
     private int rating;
@@ -31,7 +35,7 @@ class Image extends Item {
 
     @Override
     public void setPath(String Path) {
-          this.path = Path;
+        this.path = Path;
     }
 
     @Override
@@ -72,5 +76,21 @@ class Image extends Item {
     @Override
     public String getAuthor() {
         return this.author;
+    }
+
+    @Override
+    public void show() {
+        Desktop desk = Desktop.getDesktop();
+        File fileItem = new File(this.getPath());
+        try {
+            desk.print(fileItem);
+        }catch (IOException e) {
+            System.out.println("Exceptie IOException ! ");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return this.getName() + ", " + this.getAuthor();
     }
 }

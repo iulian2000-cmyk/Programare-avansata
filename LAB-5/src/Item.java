@@ -1,5 +1,3 @@
-
-
 abstract  class Item {
 
     /**
@@ -59,4 +57,14 @@ abstract  class Item {
      * @return String
      */
     abstract public String getAuthor();
+
+    /**
+     * Metoda pentru printarea continutului
+     */
+    abstract public void show();
+    /**
+     * @return String
+     * Metoda toString()
+     */
+    abstract public String toString();
 }
