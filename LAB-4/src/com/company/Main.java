@@ -1,96 +1,84 @@
 package com.company;
-import com.sun.source.tree.Tree;
 
+import javax.swing.*;
 import java.util.*;
-import java.util.stream.*;
+import java.util.stream.Stream;
+
 public class Main {
 
-
     public static void main(String[] args) {
-        // Crearea obiectelor de tipul Student
+        // Compulsory
+        // Crearea obiectelor folosind stream-uri .
+        Stream<Student> streamStudents = Stream.<Student>builder().add(new Student("S0",10)).add(new Student("S1",8)).add(new Student("S2",8)).add(new Student("S3",7)).build();
+        Stream<School> streamSchools = Stream.of(new School("H0", 1), (new School("H1", 2)), (new School("H2", 2)));
 
-        Student S0 = new Student("S0",12.1);
-        Student S1 = new Student("S1",11);
-        Student S2 = new Student("S2",10);
-        Student S3 = new Student("S3",19);
+        // LinkedList pentru studenti
+        LinkedList<Student> students= new LinkedList<>();
+        streamStudents.forEach(students::add);
+        // Sortare bazata pe scorul studentului
+        students.sort(Comparator.comparing(Student::getScore));
+        // TreeSet pentru scoli
+        Set<School> schools= new TreeSet<>();
+        streamSchools.forEach(schools::add);
 
-        // Crearea obiectelor de tipul School
-        School H0 = new School("H0",1,1);
-        School H1 = new School("H1",2,2);
-        School H2 = new School("H2",3,2);
+        // Afisarea listelor de scoli , studenti
+        /*
+        for(Student student : students)
+        {
+            System.out.println(student.getName() + "  " +  student.getScore());
+        }
+        for (School school : schools)
+        {
+            System.out.println(school.getName() + "  " + school.getCapacity());
+        }
+         */
+        // Afisarea preferintelor pt fiecare student in parte
+        Map<Student,Set<School>> studentPreferences=new HashMap<>();
+        studentPreferences.put(new Student("S0",10),schools);
+        studentPreferences.put(new Student("S1",8),schools);
 
-        System.out.println("\nPreferences for each student . ");
-        TreeSet<School> preferencesStudents = new TreeSet<School>();
-        preferencesStudents.add(H0);
-        preferencesStudents.add(H1);
-        preferencesStudents.add(H2);
+        Set<School> schools_for_S2 = new TreeSet<>();
+        schools_for_S2.add(new School("H0",1));
+        schools_for_S2.add(new School("H1",2));
 
-        S0.setPreferences(preferencesStudents);
-        S0.showPreferences();
-        S1.setPreferences(preferencesStudents);
-        S1.showPreferences();
-        preferencesStudents.clear();
-        preferencesStudents.add(H0);
-        preferencesStudents.add(H1);
+        studentPreferences.put(students.get(2),schools_for_S2);
+        Set<School> schools_for_S3 = new TreeSet<>();
+        schools_for_S3.add(new School("H0",1));
+        schools_for_S3.add(new School("H2",2));
 
-        S2.setPreferences(preferencesStudents);
-        S2.showPreferences();
-        preferencesStudents.clear();
-        preferencesStudents.add(H0);
-        preferencesStudents.add(H2);
-
-        S3.setPreferences(preferencesStudents);
-        S3.showPreferences();
-        preferencesStudents.clear();
-
-        preferencesStudents.add(H0);
-        preferencesStudents.add(H1);
-        preferencesStudents.add(H2);
-
-        // Hash map pentru studenti
-        HashMap<Student,TreeSet<School>> hashMapForStudents = new HashMap<>();
-        hashMapForStudents.put(S0,S1.getPreferences());
-        hashMapForStudents.put(S1,S0.getPreferences());
-        hashMapForStudents.put(S2,S2.getPreferences());
-        hashMapForStudents.put(S3,S3.getPreferences());
-
-        System.out.println("\n Preferences for schools : ");
-        LinkedList<Student> linkedListStudents = new LinkedList<>();
-
-        linkedListStudents.add(S3);
-        linkedListStudents.add(S0);
-        linkedListStudents.add(S1);
-        linkedListStudents.add(S2);
-        H0.setPreferences(linkedListStudents);
-        H0.ShowPreferences();
-
-        linkedListStudents.clear();
-        linkedListStudents.add(S0);
-        linkedListStudents.add(S1);
-        linkedListStudents.add(S2);
-
-        H1.setPreferences(linkedListStudents);
-        H1.ShowPreferences();
-
-        linkedListStudents.clear();
-        linkedListStudents.add(S0);
-        linkedListStudents.add(S1);
-        linkedListStudents.add(S3);
-        H2.setPreferences(linkedListStudents);
-        H2.ShowPreferences();
-
-        HashMap<School,LinkedList<Student>> hashMapForSchools = new HashMap<>();
-        hashMapForSchools.put(H0,H0.getPreferences());
-        hashMapForSchools.put(H1,H1.getPreferences());
-        hashMapForSchools.put(H2,H2.getPreferences());
-
-        // Creare streeam-uri
-        Stream <Student> streamStudents = linkedListStudents.stream();
-        Stream <School> streamSchools = preferencesStudents.stream();
-        long numberStudents = streamStudents.count();
-        long numberSchools = streamSchools.count();
-
-
-
+        studentPreferences.put(new Student("S3",7),schools_for_S3);
+        for(Student student : studentPreferences.keySet())
+        {
+            System.out.print("  " + student.getName() + "->");
+            for(School school : studentPreferences.get(student))
+            {
+                System.out.print(" " + school.getName());
+            }
+            System.out.println();
+        }
+        // Afisarea preferintelor pentru fiecare scoala in parte
+        Map<School,List<Student>>schoolPreferences=new TreeMap<>();
+        Iterator<School> iteratorForSchools = schools.iterator();
+        School iteratorValueForSchools=iteratorForSchools.next();
+        schoolPreferences.put(iteratorValueForSchools,new LinkedList<>());
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(3));
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(0));
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(1));
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(2));
+        iteratorValueForSchools=iteratorForSchools.next();
+        schoolPreferences.put(iteratorValueForSchools,new LinkedList<>());
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(0));
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(2));
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(1));
+        iteratorValueForSchools=iteratorForSchools.next();
+        schoolPreferences.put(iteratorValueForSchools,new LinkedList<>());
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(0));
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(1));
+        schoolPreferences.get(iteratorValueForSchools).add(students.get(3));
+        for (School s : schoolPreferences.keySet()){
+            System.out.print(s.getName()+" :( ");
+            schoolPreferences.get(s).forEach(each -> System.out.print(each.getName()+" "));
+            System.out.print(")\n");
+        }
     }
 }

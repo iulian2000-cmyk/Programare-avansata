@@ -1,97 +1,48 @@
 package com.company;
-import com.sun.source.tree.Tree;
 
-import java.util.TreeSet;
-
-
-class Student implements Comparable<Student> {
+/**
+ * @author Isac Iulian-George
+ *
+ */
+class Student {
     private String Name;
     private double score;
-    private TreeSet<School> preferences;
-
-    /**
-     * Setter pentru preferinte
-     * @param preferences
-     */
-    public void setPreferences(TreeSet<School> preferences)
-    {
-       this.preferences = new TreeSet<>();
-       this.preferences = preferences;
-    }
-
-    /**
-     * Getter pentru preferinte .
-     * @return TreeSet<Student>
-     */
-    public TreeSet<School> getPreferences()
-    {
-        return this.preferences;
-    }
-    /**
-     * Constructor Student()
-     */
-    Student(String Name,double score)
-    {
-        this.setName(Name);
+    Student(String name,double score){
         this.setScore(score);
+        this.setName(name);
     }
+
     /**
-     * Setter pentru nume
-     * @param Name
-     * @return void
+     * Getter pentru score
+     * @return double
      */
-    public void setName(String Name) {
-        this.Name = Name;
+    public double getScore()
+    {
+        return this.score;
     }
     /**
-     * Setter pentru mark
-     * @param score
+     * Setter pentru scor
      * @return void
+     * @param score
      */
     public void setScore(double score)
     {
-        this.score=score;
+        this.score = score;
     }
-
     /**
-     * Getter pentru nume
+     * Setter pentru nume
+     * @return void
+     * @param Name
+     */
+   public void setName(String Name)
+   {
+       this.Name = Name;
+   }
+    /**
+     * Getter pentru name
      * @return String
      */
-    public String getName()
-    {
+    public String getName() {
         return this.Name;
-    }
-    /**
-     * Getter pentru mark
-     * @return double
-     */
-    public double getScore(){
-        return this.score;
-    }
-
-    @Override
-    public int compareTo(Student student) {
-        if(this.score > student.getScore() )
-        {
-            return 1;
-        }else{
-            if(this.score < student.getScore())
-            {
-                return -1;
-            }else{
-                return 0;
-            }
-        }
-    }
-    /**
-     * Functie de afisare
-     * @return void
-     */
-    public void showPreferences(){
-        System.out.print(this.getName() +  "->");
-        for(School value : preferences) {
-            System.out.print("  " + value.getName());
-        }
-        System.out.println();
     }
 }
