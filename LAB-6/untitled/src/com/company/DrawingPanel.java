@@ -36,10 +36,21 @@ public class DrawingPanel extends JPanel {
         });
     }
     private void drawShape(int x, int y) {
-            int radius = 20;
+            int radius = (Integer) frame.configPanel.radius.getValue();
             int sides = (Integer) frame.configPanel.sidesField.getValue() ;
-            Color color = Color.RED;
-            graphics.setColor(color);
+            String color = (String) frame.configPanel.colorCombo.getSelectedItem();
+            if(color == "RED"){
+
+                graphics.setColor(Color.RED);
+            }
+            if(color == "BLUE")
+            {
+                graphics.setColor(Color.BLUE);
+            }
+            if(color == "GREEN")
+            {
+                graphics.setColor(Color.GREEN);
+            }
             graphics.fill(new RegularPolygon(x, y, radius, sides));
         }
     @Override
