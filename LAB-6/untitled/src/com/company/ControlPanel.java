@@ -1,5 +1,7 @@
 package com.company;
 
+import javafx.scene.shape.Ellipse;
+
 import javax.imageio.ImageIO;
 
 
@@ -7,8 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.Ellipse2D;
 import java.io.File;
 import java.io.IOException;
+import java.util.Objects;
 
 public class ControlPanel extends JPanel {
     final MainFrame frame;
@@ -16,6 +20,8 @@ public class ControlPanel extends JPanel {
     JButton loadBtn;
     JButton resetBtn;
     JButton exitBtn ;
+    JButton undo;
+    JButton delete;
 
     ControlPanel(MainFrame frame){
         this.frame = frame;
@@ -37,8 +43,45 @@ public class ControlPanel extends JPanel {
         exitBtn = new JButton("Exit");
         exitBtn.addActionListener(this::exit);
         add(exitBtn);
-        setVisible(true);
 
+        undo = new JButton("Undo");
+        undo.addActionListener(this::undo);
+        add(undo);
+
+        delete = new JButton("Delete");
+        delete.addActionListener(this::delete);
+        add(delete);
+        setVisible(true);
+    }
+    private void undo(ActionEvent a)
+    {
+        String color = (String) frame.configPanel.colorCombo.getSelectedItem();
+        if(color == "RED")
+        {
+            frame.canvas.graphics.setColor(Color.RED);
+        }
+        if(color == "BLUE")
+        {
+            frame.canvas.graphics.setColor(Color.BLUE);
+        }
+        if(color == "GREEN")
+        {
+            frame.canvas.graphics.setColor(Color.GREEN);
+        }
+        if(frame.canvas.deletedShapes.size() > 0) {
+            Shape deletedShape = frame.canvas.deletedShapes.pop();
+            frame.canvas.graphics.fill(deletedShape);
+            frame.canvas.repaint();
+        }
+    }
+    private void delete(ActionEvent a) {
+        if (frame.canvas.shapes.size() > 0) {
+            Shape shapeToDelete = frame.canvas.shapes.pop();
+            frame.canvas.graphics.setColor(Color.WHITE);
+            frame.canvas.graphics.fill(shapeToDelete);
+            frame.canvas.deletedShapes.push(shapeToDelete);
+            frame.canvas.repaint();
+        }
     }
     private void exit(ActionEvent a)
     {

@@ -3,6 +3,7 @@ package com.company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Stack;
 
 public class MainFrame extends JFrame{
     ConfigPanel configPanel;
