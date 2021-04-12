@@ -17,9 +17,24 @@ import java.util.concurrent.ThreadLocalRandom;
 public class DatabaseHandler {
     private static  Connection conn;
     private static PreparedStatement stmt;
-    private static String SQL_interogation;
     private static ResultSet result;
+    private static DatabaseHandler databaseHandler = null;
 
+
+
+    public static DatabaseHandler getInstance()
+    {
+        if (databaseHandler == null)
+            databaseHandler = new DatabaseHandler();
+
+        return databaseHandler;
+    }
+
+    /**
+     * Functie care verifica daca un string este numar.
+     * @param str
+     * @return
+     */
     public static boolean isNumeric(String str) {
         try {
             Double.parseDouble(str);
