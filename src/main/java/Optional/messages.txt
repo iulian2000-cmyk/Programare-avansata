@@ -1,2 +1,0 @@
-name1:"Salut!","Salut de la Suceava"
-name2:"Salut!","Eu sunt Marian!","Buna"
