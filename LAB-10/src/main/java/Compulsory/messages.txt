@@ -1,2 +1,0 @@
-name1:"Salut!"
-name2:"Salut!"
